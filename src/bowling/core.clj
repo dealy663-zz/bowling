@@ -128,7 +128,8 @@
      (let [ball3      (if (nil? ball3) 0 ball3)
            new-frame  (assoc frame :ball1 ball1 :ball2 ball2 :ball3 ball3
                                    :score (+ ball1 ball2 ball3)) ;; setup new frame
-           new-sc     (update-last-frame score-card new-frame)]  ;; update previous frames
+           new-sc     (update-last-frame score-card new-frame)
+           new-sc     (assoc new-sc :last-exception nil)]  ;; update previous frames
        (update-in new-sc [:frames] conj new-frame))              ;; add new frame to score-card
      (catch Exception exp
        (assoc score-card :last-exception exp)))))
